@@ -2,5 +2,8 @@ ems:
   server: localhost
   port: 7222
   user: user
-  password: password
-  queue: test.queue
+  password:
+  queue: queue.test
+
+server:
+  port: 8086

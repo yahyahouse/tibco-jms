@@ -53,6 +53,11 @@
 			<artifactId>tibjms</artifactId>
 			<version>8.5.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>annotationProcessor</scope>
+		</dependency>
 		<!-- Tibco EMS End -->
 	</dependencies>
 	<build>
