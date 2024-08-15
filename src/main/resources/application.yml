@@ -3,7 +3,21 @@ ems:
   port: 7222
   user: user
   password:
-  queue: queue.test
-
+#  queue: queue.test
+#  queue: cep.v1.configuration.eventdefinition.fraudengine.1
+  queue: cep.v1.configuration.fraud.fraudengine.1
+#  queue: cep.v1.configuration.eventdefinition
 server:
   port: 8086
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    template:
+      default-topic: test

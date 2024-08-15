@@ -32,7 +32,7 @@ public class TibcoBusConfiguration {
 	@Value("${ems.user}")
 	private String user;
 
-	@Bean(name = "jmsConnectionFactory")
+	@Bean(name = "QueueConnectionFactory")
 	public ConnectionFactory jmsConnectionFactory() throws JMSException {
 		final TibjmsConnectionFactory factory = new TibjmsConnectionFactory();
 
@@ -52,7 +52,7 @@ public class TibcoBusConfiguration {
 		jmsTemplate.setDefaultDestinationName(queue);
 		jmsTemplate.setExplicitQosEnabled(true);
 		jmsTemplate.setDeliveryMode(DeliveryMode.PERSISTENT);
-		jmsTemplate.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE);
+		jmsTemplate.setSessionAcknowledgeMode(Session.AUTO_ACKNOWLEDGE);
 		jmsTemplate.setSessionTransacted(false);
 
 		return jmsTemplate;
