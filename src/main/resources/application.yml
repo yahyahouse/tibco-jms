@@ -4,8 +4,8 @@ ems:
   user: user
   password:
 #  queue: queue.test
-#  queue: cep.v1.configuration.eventdefinition.fraudengine.1
-  queue: cep.v1.configuration.fraud.fraudengine.1
+  queue: cep.v1.configuration.eventdefinition.fraudengine.1
+#  queue: cep.v1.configuration.fraud.fraudengine.1
 #  queue: cep.v1.configuration.eventdefinition
 server:
   port: 8086

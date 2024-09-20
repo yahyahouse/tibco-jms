@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import net.talaatharb.jms.tibco.service.JmsSenderService;
 
 import javax.jms.JMSException;
+import java.util.Map;
 
 @RestController
 public class SampleController {
@@ -28,12 +29,12 @@ public class SampleController {
 	private InvokeAPI invokeAPI;
 
 	@PostMapping(path = "/api/message/queue", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String sendQueue(@RequestBody QueueRequest message, @RequestParam String queue) {
+	public String sendQueue(@RequestBody Map<String,Object> message, @RequestParam String queue) {
 		try {
-			jmsService.send(message,queue);
+			jmsService.send(message, queue);
 
 			return String.format(message.toString());
-		} catch (JmsException | JMSException e) {
+		} catch (JmsException e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
 					e.getMessage());
 		}

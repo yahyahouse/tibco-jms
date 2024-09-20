@@ -16,8 +16,14 @@ public class JmsReceiveService {
     }
 
 
-    @KafkaListener(topics = "test", groupId = "group_id")
-    public void receiveKafka(String message) {
-        logger.info("Received KAFKA <" + message + ">");
-    }
+//    @JmsListener(destination = "cep.v1.stream.event.fraudengine")
+//    public void receive2(Object message) {
+//        logger.info("Received EMS <" + message + ">");
+//    }
+
+
+//    @KafkaListener(topics = "test", groupId = "group_id")
+//    public void receiveKafka(String message) {
+//        logger.info("Received KAFKA <" + message + ">");
+//    }
 }

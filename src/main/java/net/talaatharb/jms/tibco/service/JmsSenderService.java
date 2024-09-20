@@ -14,6 +14,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -39,17 +40,40 @@ public class JmsSenderService {
         // TODO document why this constructor is empty
     }
 
-    public void send(final QueueRequest request,String queue) throws JMSException {
-        JSONObject jsonObject = new JSONObject(request);
-        String msg = XML.toString(jsonObject);
-        log.info("Sending <{}> to <{}>", msg, queue);
-        log.info("Sending {} to {}", jsonObject, queue);
-//        Message jmsMsg = session.createTextMessage();
-//        jmsMsg.setStringProperty("_ns_", "www.tibco.com/be/ontology/Events/Definitions/EventDefinition");
-//        jmsMsg.setStringProperty("_nm_", "EventDefinition");
-        MessageCreator jmsMsg = session -> session.createTextMessage(jsonObject.toString());
-        jmsTemplate.send(queue, jmsMsg);
-//        msgProducer.send(destination,jmsMsg);
+//    public void send(final QueueRequest request,String queue) throws JMSException {
+//        JSONObject jsonObject = new JSONObject(request);
+//        String msg = XML.toString(jsonObject);
+//        log.info("Sending <{}> to <{}>", msg, queue);
+//        log.info("Sending {} to {}", jsonObject, queue);
+//
+////        Message jmsMsg = session.createTextMessage();
+////        jmsMsg.setStringProperty("_ns_", "www.tibco.com/be/ontology/Events/Definitions/EventDefinition");
+////        jmsMsg.setStringProperty("_nm_", "EventDefinition");
+//        MessageCreator jmsMsg = session -> session.createTextMessage(jsonObject.toString());
+//        MessageCreator msgXML = session -> session.createTextMessage(msg.toString());
+//        jmsTemplate.send(queue, new MessageCreator() {
+//            @Override
+//            public Message createMessage(Session session) throws JMSException {
+//                return msgXML.createMessage(session);
+//            }
+//        });
+//
+////        msgProducer.send(destination,jmsMsg);
+//    }
+
+    public void send(final Map<String, Object> msg1,String queue) {
+//        jmsTemplate.send(queue, new MessageCreator() {
+////            JSONObject jsonObject = new JSONObject(msg1);
+////        String msg = XML.toString(jsonObject);
+//            @Override
+//            public Message createMessage(Session session) throws JMSException {
+//                TextMessage message = session.createTextMessage();
+//                message.setText(msg1.toString());
+//                message.
+//                return message;
+//            }});
+        jmsTemplate.convertAndSend(queue, msg1);
+//        jmsTemplate.convertAndSend(msg1);
     }
 
     public void sendTopic(final String msg) {
